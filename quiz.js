@@ -1048,3 +1048,11 @@ function backToCategories() {
   document.getElementById('quiz-question').style.display  = 'none';
   document.getElementById('quiz-categories').style.display = 'block';
 }
+
+// Esponi le funzioni al contesto globale (necessario con type="module")
+window.pickCategory   = pickCategory;
+window.startQuiz      = startQuiz;
+window.selectAnswer   = selectAnswer;
+window.nextQuestion   = nextQuestion;
+window.restartQuiz    = restartQuiz;
+window.backToCategories = backToCategories;
