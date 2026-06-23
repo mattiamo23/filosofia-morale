@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riassunti PDF – Filosofia</title>
+  <link rel="stylesheet" href="/src/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .pdf-row {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0,0,0,0.09);
+      border-left: 3px solid rgba(61,91,217,0.35);
+      background: var(--color-surface);
+      transition: background 0.15s, border-left-color 0.15s;
+    }
+    @media (max-width: 600px) {
+      .pdf-row { flex-direction: column; align-items: stretch; gap: 0.85rem; }
+      .btn-download { text-align: center; }
+    }
+    .pdf-row:hover { background: var(--color-surface2); border-left-color: var(--color-accent); }
+    .btn-download {
+      display: inline-block; flex-shrink: 0;
+      padding: 0.5rem 1rem; border-radius: 0.35rem;
+      background: var(--color-accent); color: #0c1020;
+      font-size: 0.8rem; font-weight: 600; text-decoration: none;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .btn-download:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .section-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-divider {
+      height: 1px; background: rgba(0,0,0,0.09); margin: 2.5rem 0;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b" style="background:rgba(245,240,232,0.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(0,0,0,0.09)">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 no-underline">
+        <span class="text-2xl font-bold" style="color:var(--color-accent);font-family:var(--font-serif)">φ</span>
+        <span class="text-base font-semibold tracking-wide" style="color:var(--color-text)">Filosofia</span>
+      </a>
+      <nav class="flex gap-6 text-sm font-medium">
+        <a href="index.html" class="hover:opacity-80 transition-opacity" style="color:var(--color-muted)">Home</a>
+        <a href="quiz.html" class="hover:opacity-80 transition-opacity" style="color:var(--color-muted)">Quiz</a>
+        <a href="riassunti.html" style="color:var(--color-accent)">Riassunti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- HERO -->
+    <section class="py-10 sm:py-16 px-6 text-center">
+      <div class="max-w-xl mx-auto">
+        <p class="text-xs uppercase tracking-widest mb-3 font-semibold" style="color:var(--color-accent)">Materiale di Studio</p>
+        <h1 class="text-4xl font-bold mb-4" style="font-family:var(--font-serif);color:var(--color-text)">Riassunti PDF</h1>
+        <p class="text-sm leading-relaxed" style="color:var(--color-muted)">
+          Scarica i riassunti dei 4 testi del programma. Pronti per la stampa o la lettura offline.
+        </p>
+      </div>
+    </section>
+
+    <!-- CATEGORIE + CARDS -->
+    <section class="px-6 pb-24 max-w-3xl mx-auto">
+
+      <!-- 1: Etica Linee Evolutive -->
+      <div class="section-label">
+        <span>🏛️</span>
+        <h2 class="text-sm font-bold" style="font-family:var(--font-serif);color:var(--color-text)">Etica Linee Evolutive</h2>
+        <span class="text-xs" style="color:var(--color-muted)">Platone → Mill</span>
+      </div>
+      <div class="pdf-row">
+        <div class="flex-1">
+          <p class="font-semibold text-sm mb-1" style="color:var(--color-text)">Etica: Linee Evolutive</p>
+          <p class="text-xs leading-relaxed" style="color:var(--color-muted)">
+            Dall'etica di Platone e Aristotele fino a Hume, Smith, Kant e Mill. Virtù, passioni, simpatia, imperativo categorico, utilitarismo.
+          </p>
+        </div>
+        <a href="pdfs/etica-linee-evolutive.pdf" download class="btn-download">⬇ Scarica</a>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 2: Politiche della Differenza -->
+      <div class="section-label">
+        <span>⚖️</span>
+        <h2 class="text-sm font-bold" style="font-family:var(--font-serif);color:var(--color-text)">Le Politiche della Differenza</h2>
+        <span class="text-xs" style="color:var(--color-muted)">Iris Marion Young</span>
+      </div>
+      <div class="pdf-row">
+        <div class="flex-1">
+          <p class="font-semibold text-sm mb-1" style="color:var(--color-text)">Le Politiche della Differenza</p>
+          <p class="text-xs leading-relaxed" style="color:var(--color-muted)">
+            Giustizia sociale, critica al paradigma distributivo, le cinque facce dell'oppressione: sfruttamento, marginalizzazione, imperialismo culturale, violenza e mancanza di potere.
+          </p>
+        </div>
+        <a href="pdfs/politiche-della-differenza.pdf" download class="btn-download">⬇ Scarica</a>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 3: Etica Nicomachea -->
+      <div class="section-label">
+        <span>📜</span>
+        <h2 class="text-sm font-bold" style="font-family:var(--font-serif);color:var(--color-text)">Etica Nicomachea</h2>
+        <span class="text-xs" style="color:var(--color-muted)">Aristotele</span>
+      </div>
+      <div class="pdf-row">
+        <div class="flex-1">
+          <p class="font-semibold text-sm mb-1" style="color:var(--color-text)">Etica Nicomachea – Aristotele</p>
+          <p class="text-xs leading-relaxed" style="color:var(--color-muted)">
+            Riassunto dettagliato dei libri 1–10: felicità, virtù etiche e dianoetiche, giusto mezzo, giustizia distributiva e correttiva, amicizia, piacere e vita contemplativa.
+          </p>
+        </div>
+        <a href="pdfs/etica-nicomachea-aristotele.pdf" download class="btn-download">⬇ Scarica</a>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 4: Sottomessa Non Si Nasce -->
+      <div class="section-label">
+        <span>✊</span>
+        <h2 class="text-sm font-bold" style="font-family:var(--font-serif);color:var(--color-text)">Sottomessa Non Si Nasce</h2>
+        <span class="text-xs" style="color:var(--color-muted)">de Beauvoir</span>
+      </div>
+      <div class="pdf-row">
+        <div class="flex-1">
+          <p class="font-semibold text-sm mb-1" style="color:var(--color-text)">Sottomessa Non Si Nasce</p>
+          <p class="text-xs leading-relaxed" style="color:var(--color-muted)">
+            Filosofia femminista: de Beauvoir, Freud, MacKinnon, Heidegger. Critica all'essenzialismo biologico, corpo femminile, situazione e libertà.
+          </p>
+        </div>
+        <a href="pdfs/sottomessa-non-si-nasce.pdf" download class="btn-download">⬇ Scarica</a>
+      </div>
+
+      <!-- Aggiungi altri PDF qui sotto con lo stesso blocco -->
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-5 text-center text-xs border-t" style="color:var(--color-muted);border-color:var(--color-border)">
+    Studio Esame di Filosofia &mdash; Buono studio! 🎓
+  </footer>
+</body>
+</html>

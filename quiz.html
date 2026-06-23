@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz – Filosofia</title>
+  <link rel="stylesheet" href="/src/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── Answer buttons ── */
+    .answer-btn {
+      display: block; width: 100%; text-align: left;
+      padding: 0.95rem 1.2rem 0.95rem 1.1rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0,0,0,0.09);
+      border-left: 3px solid transparent;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-size: 0.9rem; line-height: 1.55;
+      cursor: pointer;
+      transition: background 0.16s, border-left-color 0.16s, transform 0.12s;
+    }
+    .answer-btn:hover:not(:disabled) {
+      background: var(--color-surface2);
+      border-left-color: var(--color-accent);
+      transform: translateX(3px);
+    }
+    .answer-btn.correct {
+      background: rgba(30,122,78,0.08);
+      border-color: var(--color-success);
+      border-left-color: var(--color-success);
+      color: var(--color-success);
+    }
+    .answer-btn.wrong {
+      background: rgba(184,48,48,0.07);
+      border-color: var(--color-error);
+      border-left-color: var(--color-error);
+      color: var(--color-error);
+    }
+    .answer-btn:disabled { cursor: default; }
+
+    /* ── Feedback ── */
+    .feedback-box {
+      margin-top: 0.85rem;
+      padding: 0.9rem 1.1rem 0.9rem 1.25rem;
+      border-radius: 0.45rem;
+      font-size: 0.85rem; line-height: 1.65;
+      border-left: 3px solid transparent;
+    }
+    .feedback-box.correct {
+      background: rgba(30,122,78,0.07);
+      border-left-color: var(--color-success);
+      color: var(--color-success);
+    }
+    .feedback-box.wrong {
+      background: rgba(184,48,48,0.07);
+      border-left-color: var(--color-error);
+      color: var(--color-error);
+    }
+
+    /* ── Progress ── */
+    .progress-bar-track {
+      height: 3px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 99px;
+      transition: width 0.35s ease;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0.4rem;
+      border: none;
+      background: var(--color-accent);
+      color: #0c1020;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.015em;
+      cursor: pointer;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover  { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); filter: brightness(0.96); }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0.4rem;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: transparent;
+      color: var(--color-muted);
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    /* ── Category buttons ── */
+    .cat-btn {
+      display: flex; align-items: center; gap: 1rem;
+      width: 100%; text-align: left;
+      padding: 1rem 1.2rem 1rem 1.1rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0,0,0,0.09);
+      border-left: 3px solid transparent;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+      transition: background 0.15s, border-left-color 0.15s;
+    }
+    .cat-btn:hover {
+      background: var(--color-surface2);
+      border-left-color: var(--color-accent);
+    }
+    .cat-btn--featured {
+      background: rgba(61,91,217,0.07);
+      border-left-color: var(--color-accent);
+    }
+    .cat-btn--featured:hover { background: rgba(61,91,217,0.13); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b" style="background:rgba(245,240,232,0.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(0,0,0,0.09)"  >
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 no-underline">
+        <span class="text-2xl font-bold" style="color:var(--color-accent);font-family:var(--font-serif)">φ</span>
+        <span class="text-base font-semibold tracking-wide" style="color:var(--color-text)">Filosofia</span>
+      </a>
+      <nav class="flex gap-6 text-sm font-medium">
+        <a href="index.html" class="hover:opacity-80 transition-opacity" style="color:var(--color-muted)">Home</a>
+        <a href="quiz.html" style="color:var(--color-accent)">Quiz</a>
+        <a href="riassunti.html" class="hover:opacity-80 transition-opacity" style="color:var(--color-muted)">Riassunti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-start justify-center px-4 py-6 sm:py-12">
+    <div class="w-full max-w-2xl">
+
+      <!-- ── SCREEN 0: SCELTA CATEGORIA ── -->
+      <div id="quiz-categories">
+        <div class="text-center mb-10">
+          <p class="text-xs uppercase tracking-widest mb-2 font-semibold" style="color:var(--color-accent)">Quiz</p>
+          <h1 class="text-3xl font-bold" style="font-family:var(--font-serif);color:var(--color-text)">Scegli una categoria</h1>
+          <p class="text-sm mt-2" style="color:var(--color-muted)">Allenati su un testo specifico o su tutto il programma.</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <!-- Tutto il programma -->
+          <button onclick="pickCategory('tutti')" class="cat-btn cat-btn--featured">
+            <span class="text-2xl leading-none">📚</span>
+            <div class="flex-1">
+              <p class="font-semibold text-sm" style="color:var(--color-text)">Tutto il Programma</p>
+              <p class="text-xs mt-0.5" style="color:var(--color-muted)">20 domande · estratte a caso da un pool di 72</p>
+            </div>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded" style="background:var(--color-accent);color:#0c1020">Inizia</span>
+          </button>
+
+          <!-- Etica Linee Evolutive -->
+          <button onclick="pickCategory('linee')" class="cat-btn">
+            <span class="text-2xl leading-none">🏛️</span>
+            <div class="flex-1">
+              <p class="font-semibold text-sm" style="color:var(--color-text)">Etica Linee Evolutive</p>
+              <p class="text-xs mt-0.5" style="color:var(--color-muted)">15 domande · pool di 28 · Platone, Aristotele, Hume, Smith, Kant, Mill</p>
+            </div>
+            <span class="text-xs" style="color:var(--color-muted)">→</span>
+          </button>
+
+          <!-- Politiche della Differenza -->
+          <button onclick="pickCategory('politiche')" class="cat-btn">
+            <span class="text-2xl leading-none">⚖️</span>
+            <div class="flex-1">
+              <p class="font-semibold text-sm" style="color:var(--color-text)">Le Politiche della Differenza</p>
+              <p class="text-xs mt-0.5" style="color:var(--color-muted)">10 domande · pool di 12 · Iris Marion Young</p>
+            </div>
+            <span class="text-xs" style="color:var(--color-muted)">→</span>
+          </button>
+
+          <!-- Etica Nicomachea -->
+          <button onclick="pickCategory('nicomachea')" class="cat-btn">
+            <span class="text-2xl leading-none">📜</span>
+            <div class="flex-1">
+              <p class="font-semibold text-sm" style="color:var(--color-text)">Etica Nicomachea</p>
+              <p class="text-xs mt-0.5" style="color:var(--color-muted)">15 domande · pool di 20 · Aristotele</p>
+            </div>
+            <span class="text-xs" style="color:var(--color-muted)">→</span>
+          </button>
+
+          <!-- Sottomessa Non Si Nasce -->
+          <button onclick="pickCategory('beauvoir')" class="cat-btn">
+            <span class="text-2xl leading-none">✊</span>
+            <div class="flex-1">
+              <p class="font-semibold text-sm" style="color:var(--color-text)">Sottomessa Non Si Nasce</p>
+              <p class="text-xs mt-0.5" style="color:var(--color-muted)">10 domande · pool di 12 · de Beauvoir, MacKinnon</p>
+            </div>
+            <span class="text-xs" style="color:var(--color-muted)">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── SCREEN 1: START (dopo scelta categoria) ── -->
+      <div id="quiz-start" style="display:none;background:var(--color-surface);border:1px solid rgba(0,0,0,0.09);border-radius:0.65rem;box-shadow:0 2px 20px rgba(0,0,0,0.08);padding:2rem;text-align:center">
+        <div class="text-4xl mb-4">🎯</div>
+        <h2 class="text-xl font-bold mb-1" style="font-family:var(--font-serif);color:var(--color-text)">
+          <span id="start-category-name"></span>
+        </h2>
+        <p class="text-sm mb-1" style="color:var(--color-muted)">
+          <strong id="total-questions-display" style="color:var(--color-text)"></strong> domande estratte a caso
+        </p>
+        <p class="text-xs mb-6" style="color:var(--color-muted)">
+          da un pool di <strong id="pool-size-display" style="color:var(--color-muted)"></strong> &middot; ogni sessione è diversa
+        </p>
+        <div class="flex gap-3 justify-center flex-wrap">
+          <button class="btn-primary" onclick="startQuiz()">Inizia il Quiz</button>
+          <button class="btn-secondary" onclick="backToCategories()">← Categorie</button>
+        </div>
+      </div>
+
+      <!-- ── SCREEN 2: DOMANDA ── -->
+      <div id="quiz-question" style="display:none;background:var(--color-surface);border:1px solid rgba(0,0,0,0.09);border-radius:0.65rem;box-shadow:0 2px 20px rgba(0,0,0,0.08);padding:2rem">
+        <div class="progress-bar-track mb-5">
+          <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+        </div>
+        <div class="flex justify-between text-xs mb-6" style="color:var(--color-muted)">
+          <span id="question-counter">Domanda 1 di 10</span>
+          <span id="quiz-score-live">Punteggio: 0</span>
+        </div>
+        <p id="question-text" class="text-lg leading-snug mb-6"
+           style="color:var(--color-text);font-family:var(--font-serif);font-weight:600"></p>
+        <div id="answers-container" class="flex flex-col gap-2"></div>
+        <div id="feedback-box" class="feedback-box" style="display:none"></div>
+        <div class="mt-5">
+          <button class="btn-primary w-full sm:w-auto" id="next-btn" onclick="nextQuestion()" style="display:none">Prossima →</button>
+        </div>
+      </div>
+
+      <!-- ── SCREEN 3: RISULTATO ── -->
+      <div id="quiz-result" style="display:none;background:var(--color-surface);border:1px solid rgba(0,0,0,0.09);border-radius:0.65rem;box-shadow:0 2px 20px rgba(0,0,0,0.08);padding:2.5rem;text-align:center">
+        <div class="text-5xl mb-4" id="result-icon"></div>
+        <h2 class="text-2xl font-bold mb-2" id="result-title" style="font-family:var(--font-serif);color:var(--color-text)"></h2>
+        <p class="text-sm mb-5" id="result-text" style="color:var(--color-muted)"></p>
+        <div class="text-5xl font-bold mb-7" id="result-score" style="color:var(--color-accent);font-family:var(--font-serif)"></div>
+        <div class="flex gap-3 justify-center flex-wrap">
+          <button class="btn-primary" onclick="restartQuiz()">Riprova</button>
+          <button class="btn-secondary" onclick="backToCategories()">← Categorie</button>
+          <a href="riassunti.html" class="btn-secondary">Riassunti PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="py-5 text-center text-xs border-t" style="color:var(--color-muted);border-color:var(--color-border)">
+    Studio Esame di Filosofia &mdash; Buono studio! 🎓
+  </footer>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Metti qui i tuoi file PDF.
+
+Ogni file .pdf che carichi in questa cartella può essere reso scaricabile
+aggiungendo una scheda nella pagina riassunti.html.
+
+Istruzioni dettagliate sono già presenti come commento dentro riassunti.html.

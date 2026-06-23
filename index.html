@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filosofia – Studio Esame</title>
+  <link rel="stylesheet" href="/src/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .scholar-card {
+      background: var(--color-surface);
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 0.65rem;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.08);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .scholar-card:hover {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+      transform: translateY(-2px);
+    }
+    .scholar-chip {
+      background: var(--color-surface);
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b" style="background:rgba(245,240,232,0.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(0,0,0,0.09)">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 no-underline">
+        <span class="text-2xl font-bold" style="color:var(--color-accent);font-family:var(--font-serif)">φ</span>
+        <span class="text-base font-semibold tracking-wide" style="color:var(--color-text)">Filosofia</span>
+      </a>
+      <nav class="flex gap-6 text-sm font-medium">
+        <a href="index.html" style="color:var(--color-accent)">Home</a>
+        <a href="quiz.html" class="hover:opacity-80 transition-opacity" style="color:var(--color-muted)">Quiz</a>
+        <a href="riassunti.html" class="hover:opacity-80 transition-opacity" style="color:var(--color-muted)">Riassunti</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="py-12 sm:py-20 px-6 text-center">
+    <div class="max-w-xl mx-auto">
+      <p class="text-xs uppercase tracking-widest mb-4 font-semibold" style="color:var(--color-accent);letter-spacing:0.18em">Preparazione Esame</p>
+      <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-5" style="font-family:var(--font-serif);color:var(--color-text)">
+        Filosofia Morale
+      </h1>
+      <p class="text-base leading-relaxed" style="color:var(--color-muted)">
+        Quiz divisi per categoria e riassunti PDF da scaricare.<br/>
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CARDS -->
+  <section class="px-4 sm:px-6 pb-8 sm:pb-10">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+      <a href="quiz.html" class="scholar-card block p-7 no-underline">
+        <div class="text-3xl mb-4">❓</div>
+        <h2 class="text-lg font-bold mb-2" style="font-family:var(--font-serif);color:var(--color-text)">Quiz per Categoria</h2>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--color-muted)">
+          72 domande a scelta multipla su 4 testi. Ogni sessione pesca a caso dal pool, quindi è sempre diversa.
+        </p>
+        <span class="text-sm font-semibold" style="color:var(--color-accent)">Inizia →</span>
+      </a>
+      <a href="riassunti.html" class="scholar-card block p-7 no-underline">
+        <div class="text-3xl mb-4">📄</div>
+        <h2 class="text-lg font-bold mb-2" style="font-family:var(--font-serif);color:var(--color-text)">Riassunti PDF</h2>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--color-muted)">
+          Scarica i 4 riassunti del programma organizzati per testo e autore.
+        </p>
+        <span class="text-sm font-semibold" style="color:var(--color-accent)">Scarica →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CATEGORIE PREVIEW -->
+  <section class="px-4 sm:px-6 pb-14 sm:pb-20">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs uppercase tracking-widest mb-5 text-center font-semibold" style="color:var(--color-muted)">Testi del programma</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+        <div class="rounded-xl p-4 text-center border" style="background:var(--color-surface2);border-color:var(--color-border)">
+          <div class="text-2xl mb-2">🏛️</div>
+          <p class="text-xs font-semibold mb-0.5" style="color:var(--color-text)">Etica Linee Evolutive</p>
+          <p class="text-xs" style="color:var(--color-muted)">Platone → Mill · 28 domande</p>
+        </div>
+        <div class="rounded-xl p-4 text-center border" style="background:var(--color-surface2);border-color:var(--color-border)">
+          <div class="text-2xl mb-2">⚖️</div>
+          <p class="text-xs font-semibold mb-0.5" style="color:var(--color-text)">Politiche della Differenza</p>
+          <p class="text-xs" style="color:var(--color-muted)">Iris M. Young · 12 domande</p>
+        </div>
+        <div class="rounded-xl p-4 text-center border" style="background:var(--color-surface2);border-color:var(--color-border)">
+          <div class="text-2xl mb-2">📜</div>
+          <p class="text-xs font-semibold mb-0.5" style="color:var(--color-text)">Etica Nicomachea</p>
+          <p class="text-xs" style="color:var(--color-muted)">Aristotele · 20 domande</p>
+        </div>
+        <div class="rounded-xl p-4 text-center border" style="background:var(--color-surface2);border-color:var(--color-border)">
+          <div class="text-2xl mb-2">✊</div>
+          <p class="text-xs font-semibold mb-0.5" style="color:var(--color-text)">Sottomessa Non Si Nasce</p>
+          <p class="text-xs" style="color:var(--color-muted)">de Beauvoir · 12 domande</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto py-5 text-center text-xs border-t" style="color:var(--color-muted);border-color:var(--color-border)">
+    Studio Esame di Filosofia &mdash; Buono studio! 🎓
+  </footer>
+</body>
+</html>
